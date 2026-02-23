@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Heart Disease Prediction System</h1>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-tab="predict">Predict Now</button>
+                <button class="tab-btn" data-tab="dashboard">Health Insights</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="predict" class="tab-content active">
+            <div class="prediction-form">
+                <h2>Patient Information</h2>
+                <form id="predictionForm">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="Age" required>
+                        <div class="tooltip">Patient's age in years</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex">Gender</label>
+                        <select id="sex" name="Sex" required>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chestPainType">Chest Pain Type</label>
+                        <select id="chestPainType" name="ChestPainType" required>
+                            <option value="0">Typical Angina(Chest Pain related to Heart)</option>
+                            <option value="1">Atypical Angina(Chest Pain With Some Symptoms)</option>
+                            <option value="2">Non-Anginal Pain(Chest Pain Not related to Heart)</option>
+                            <option value="3">Asymptomatic(No Chest Pain)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restingBP">Resting Blood Pressure</label>
+                        <input type="number" id="restingBP" name="RestingBP" required>
+                        <div class="tooltip">Resting blood pressure (mm Hg) Ranges from 80 to 120</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cholesterol">Cholesterol</label>
+                        <input type="number" id="cholesterol" name="Cholesterol" required>
+                        <div class="tooltip">Serum cholesterol (mm/dl) Ranges from 200 to 250</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fastingBS">Fasting Blood Sugar</label>
+                        <select id="fastingBS" name="FastingBS" required>
+                            <option value="0">≤ 120 mg/dl</option>
+                            <option value="1">> 120 mg/dl</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restingECG">Resting ECG</label>
+                        <select id="restingECG" name="RestingECG" required>
+                            <option value="0">Normal</option>
+                            <option value="1">ST-T Wave Abnormality</option>
+                            <option value="2">Left Ventricular Hypertrophy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxHR">Maximum Heart Rate</label>
+                        <input type="number" id="maxHR" name="MaxHR" required>
+                        <div class="tooltip">Maximum heart rate achieved (Numeric value between 60 and 200)</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exerciseAngina">Exercise-Induced Angina (Heart Pain During Workouts or stress)</label>
+                        <select id="exerciseAngina" name="ExerciseAngina" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="oldpeak">Oldpeak(Depression level in Numeric Ranges from 0 to 6)</label>
+                        <input type="number" id="oldpeak" name="Oldpeak" step="0.1" required>
+                        <div class="tooltip">ST depression induced by exercise relative to rest</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stSlope">ST Slope(Direction of line graph in ECG Test)</label>
+                        <select id="stSlope" name="ST_Slope" required>
+                            <option value="0">Up (High Risk Level)</option>
+                            <option value="1">Flat (Moderate Risk Level)</option>
+                            <option value="2">Down (Normal Risk Level)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Predict</button>
+                </form>
+            </div>
+
+            <div id="predictionResult" class="prediction-result hidden">
+                <h3>Prediction Result</h3>
+                <div class="result-content">
+                    <div class="risk-indicator">
+                        <div class="risk-level"></div>
+                        <div class="probability"></div>
+                    </div>
+                    <p class="recommendation"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="tab-content">
+            <div class="dashboard-container">
+                <div class="chart-container">
+                    <div id="ageDistribution" class="chart"></div>
+                    <div id="genderDistribution" class="chart"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="heartDiseaseDistribution" class="chart"></div>
+                    <div id="correlationHeatmap" class="chart"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
